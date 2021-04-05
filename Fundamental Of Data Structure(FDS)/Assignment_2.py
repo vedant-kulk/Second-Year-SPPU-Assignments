@@ -1,5 +1,5 @@
 """
-   Problem Statement
+   Problem Statement::
         Write a Python program to compute following operations on String:
             a)	To display word with the longest length
             b)	To determines the frequency of occurrence of particular character in the string
