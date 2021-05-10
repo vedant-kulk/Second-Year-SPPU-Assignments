@@ -9,75 +9,115 @@
         (Note- While realizing the group, duplicate entries should be avoided, Do not use SET built-in functions)
 """
 
-class sports:
-    all=[]
-    cricket=[]
-    badminton=[]
-    football=[]
-    def data(self):
-        self.name=input("Enter name")
-        sports.all.append(self.name)
-        print("Add your sports detail")
-        print("give input 0 for no and 1 for yes")
-        c=int(input("do you play cricket"))
-        b=int(input("do you play badminton"))
-        f =int(input("do you play football"))
-        if(c==1):
-            sports.cricket.append(self.name)
-        if(b == 1):
-            sports.badminton.append(self.name)
-        if(f == 1):
-            sports.football.append(self.name)
-n=int(input("total no of students"))
-for i in range(0,n):
-    s1=sports()
-    s1.data()
-print("=======")
-print("operations")
-print("1: Students playing both cricket and badminton")
-print("2: Students playing either cricket or badminton but not both")
-print("3: Students playing neither cricket not badminton")
-print("4: Students playing criket and football but not badminton")
-print("5: Finished")
+class Set:
+    def __init__(self,length):
+        self.list=[]
+        self.length=length
 
-print("==========")
-print("list of students")
-print("students playing cricket -> ",sports.cricket)
-print("students playing badminton -> ",sports.badminton)
-print("students playing football -> ",sports.football)
+    def addelement(self):
+        print("Enter the name of student:")
+        a=0
+        for i in range(self.length):
+            val=input()
+            if (self.exists(val) == False ):
+                self.list.append(val)
+                a = a + 1
+        self.length=a
+
+    def exists(self, val):
+        for i in self.list:
+            if (i == val):
+                return True
+        return False
+
+
+    def union(self,b):
+        Uni=Set(0)
+        for i in self.list:
+            Uni.list.append(i)
+            Uni.length +=1
+        for i in b.list:
+            if(i not in Uni.list):
+                Uni.list.append(i)
+                Uni.length += 1
+        return Uni
+
+    def intersection(self,b):
+        int=Set(0)
+        for i in self.list:
+            if(i in b.list):
+                int.list.append(i)
+                int.length += 1
+        return int
+
+
+    def difference(self,b):
+        diff=Set(0)
+        for i in self.list:
+            if(i not in b.list):
+                diff.list.append(i)
+                diff.length+=1
+        return diff
+
+    def symmetric_difference(self,b):
+        sym=Set(0)
+        x=self.union(b).list
+        y=self.intersection(b).list
+        for j in x:
+            if(j not in y):
+                sym.list.append(j)
+                sym.length+=1
+        return sym
+
+    def display(self):
+        print(self.list)
+
+c=int(input("Enter the number of students who play cricket"))
+Cricket=Set(c)
+Cricket.addelement()
+print("-------------------------------------------------------------------")
+f=int(input("Enter the number of students who play football"))
+Football=Set(f)
+Football.addelement()
+print("-------------------------------------------------------------------")
+b=int(input("Enter the number of students who play badminton"))
+Badminton=Set(b)
+Badminton.addelement()
+print("-------------------------------------------------------------------")
+print("cricket players are")
+Cricket.display()
+print("football player are")
+Football.display()
+print("Badminton players are")
+Badminton.display()
+print("\n____________________________________________________________________\n")
+print("Choices:\n1-List of students who play both cricket and badminton \n2-List of students who play either cricket or badminton but not both\n3-Number of students who play neither cricket nor badminton\n4-Number of students who play cricket and football but not badminton\n5-To exit enter 0")
+print("\n____________________________________________________________________\n")
 
 while(True):
-    x = int(input("enter your choice"))
-    if(x==1):
-        cri_bad=[]
-        for j in sports.cricket:
-            if j in sports.badminton:
-                cri_bad.append(j)
-        print("These students play cricket and badminton : ",cri_bad)
-    if(x==2):
-        e=[]
-        for j in sports.cricket:
-            if j not in cri_bad:
-                e.append(j)
-        for j in sports.badminton:
-            if j not in cri_bad:
-                e.append(j)
-        print("These students play either cricket or badminton: ",e)
-    if(x==3):
-        n=[]
-        for j in sports.football:
-            if (j not in sports.cricket and j not in sports.badminton):
-                n.append(j)
-        print("These students neither play cricket not football: ",n)
-    if(x==4):
-        t=[]
-        cri_foot = []
-        for j in sports.cricket:
-            if j in sports.football:
-                cri_foot.append(j)
-        for j in cri_foot:
-            if j not in sports.badminton:
-                t.append(j)
-        print("These students play only cricket and football: ",t)
-    if(x==5):
+    choice = int(input("Enter your choice:\n"))
+    if choice==1:
+        print("List of students who play both cricket and badminton:")
+        print(Badminton.intersection(Cricket).list)
+
+    elif choice==2:
+        print("List of students who play either cricket or badminton but not both:")
+        print(Badminton.symmetric_difference(Cricket).list)
+
+    elif choice==3:
+        print("List of students who play neither cricket nor badminton:")
+        print(Football.difference((Cricket.union(Badminton))).list)
+        print("Number of students who play neither cricket nor badminton are",(Football.difference(Cricket.union(Badminton)).length))
+
+    elif choice==4:
+        print("List of students who play cricket and football but not badminton:")
+        print((Cricket.intersection(Football)).difference(Badminton).list)
+        print("Number of students who play cricket and football but not badminton:",((Cricket.intersection(Football)).difference(Badminton)).length)
+
+    elif(choice<1 or choice>4):
+        print("Exit Successful")
         break
+    print("____________________________________________________________________")
+    if (input("Do you wish to continue further? Y/N") == "N"):
+            break
+    print("\n____________________________________________________________________")
