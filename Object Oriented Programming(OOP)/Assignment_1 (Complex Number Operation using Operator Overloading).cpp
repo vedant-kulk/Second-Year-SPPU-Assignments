@@ -35,7 +35,8 @@ public:
     {
         in>>c.real>>c.img;													//over loading stream extraction operator
         return in;
-    }void show(){
+    }
+	void show(){
     	if(img<0){
     	   cout<<real<<"-"<<abs(img)<<"i"<<"\n";
     	      }
