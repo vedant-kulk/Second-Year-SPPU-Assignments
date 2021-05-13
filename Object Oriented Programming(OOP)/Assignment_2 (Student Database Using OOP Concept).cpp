@@ -12,7 +12,6 @@
 #include<iomanip>
 #include<ios> //used to get stream size
 #include<limits> //used to get numeric limits
-#include <fstream>
 using namespace std;
 
 class check;
@@ -29,7 +28,6 @@ public:
     char driv_no[20];
     char cont_add[40];
     static int x;
-
     
     student &operator=(const student &obj);
     
@@ -89,6 +87,9 @@ public:
         cin.getline(cont_add,20);
         
     }
+    
+
+
     friend void display(student &obj){
         cout<<"The name of student is -> "<<obj.name<<endl;
         cout<<"The Roll number is -> "<<obj.roll_no<<endl;
@@ -176,6 +177,9 @@ public:
 		}		
 	}	
 }
+	
+
+
     student (const student & obj)
 
 	{   cout<<"copy assignment "<<endl;
@@ -194,8 +198,6 @@ public:
     friend class check; 
 };
 
-
-
 int student::studcount = 0;
 int student::x = 1;
 
@@ -211,6 +213,10 @@ student &student::operator=(const student &obj){
     strcpy(this->tel,obj.tel);
     strcpy(driv_no,obj.driv_no);
     strcpy(this->cont_add,obj.cont_add);
+    
+    
+    
+    
 }
 int main(){
     student *s[20];
@@ -233,7 +239,6 @@ int main(){
         if(choice==1){
             s[i]=new student();                                                                  //use of new keyword
             s[i]->get_data();
-            writeToFile(*s[i]);
             i++;
             student::studcount++;
             cout<<"\n";
@@ -392,6 +397,7 @@ cout<<"_________________________________________________________________________
         cout<<"THANK YOU!!"<<endl;
         break;
         }
+    
 
 }
 return 0;
