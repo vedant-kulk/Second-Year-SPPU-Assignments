@@ -114,7 +114,7 @@ int main(){
     int choice;
     Graph *g;
         cout<<"_________________________________________"<<endl;
-        cout<<"1: Enter Edjes of graph"<<endl;
+        cout<<"1: Enter Edges of graph"<<endl;
         cout<<"2: Display  Adjacency List  " <<endl;
         cout<<"3: Breadth First Traversal (BFS)"<<endl;
         cout<<"4: Depth First Traversal (DFS)"<<endl;
