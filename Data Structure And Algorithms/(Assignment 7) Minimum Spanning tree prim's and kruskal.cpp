@@ -214,7 +214,7 @@ int main(){
     int choice;
     Graph *g;
         cout<<"_________________________________________"<<endl;
-        cout<<"1: Enter Edjes of graph"<<endl;
+        cout<<"1: Enter Edges of graph"<<endl;
         cout<<"2: Display  Adjacency Matrix  " <<endl;
         cout<<"3: Minimum Spanning tree by Prim's"<<endl;
         cout<<"4: Minimun Spanning Tree by Kruskal's"<<endl;
