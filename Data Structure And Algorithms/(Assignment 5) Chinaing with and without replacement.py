@@ -159,11 +159,9 @@ class with_replace(HashTable):
             prev=hashFunction(self.table[u].key)
             while(self.table[prev].chain!=u):
                 prev=self.table[prev].chain                                                                   #update the chain
-            # self.table[prev].chain=self.table[u].chain
+           
             self.table[prev].chain = empty
 
-            # while(self.table[prev].chain!=-1):
-            #     prev=self.table[prev].chain
 
 
             per=Data(self.table[u].key,self.table[u].value,self.table[u].chain)
